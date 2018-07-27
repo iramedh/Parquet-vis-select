@@ -18,4 +18,9 @@ export tmpFile=`echo $3 | awk -F "/" '{print $NF}'`
 
 parquet-tools cat --json $3 > /tmp/tmp_${tmpFile}.txt
 
+export totalFileCount=`cat /tmp/tmp_${tmpFile}.txt | wc -l | awk '{print $1}'`
+
+echo "Total File Count is : $totalFileCount"
+
+
 java -jar ${PARQUETQ_LIB}/${PARQUETQ_MAINJAR} $1 $2 /tmp/tmp_${tmpFile}.txt
